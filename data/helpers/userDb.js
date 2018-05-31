@@ -21,6 +21,8 @@ module.exports = {
       .then(ids => ({ id: ids[0] }));
   },
   update: function(id, user) {
+    console.log(id, user);
+    console.log('called');
     return db('users')
       .where('id', id)
       .update(user);
@@ -29,5 +31,5 @@ module.exports = {
     return db('users')
       .where('id', id)
       .del();
-  },
+  }
 };
