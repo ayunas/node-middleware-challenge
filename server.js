@@ -1,15 +1,21 @@
-const express = 'express';
+const express = require('express');
+// const cors = require('cors');
 
 const server = express();
 
-server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`)
-});
+server.use(express.json());
+// server.use(cors);
+server.use(logger);
 
-//custom middleware
+const port = process.env.PORT || 8000;
 
-function logger(req, res, next) {
+server.listen(port, () => console.log(`server listening on port ${port}`));
 
-};
+
+function logger(req,res,next) {
+  const date = new Date();
+  console.log(`request method : ${req.method} request url: ${req.hostname}:${port}${req.url} timestamp: ${date.getDay()}` )
+  next();
+}
 
 module.exports = server;
